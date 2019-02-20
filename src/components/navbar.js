@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ControlDialogs from './auth/controlDialogs';
+
 
 const styles = {
     root: {
@@ -21,8 +23,6 @@ const styles = {
     },
 };
 
-
-
 class Navbar extends Component {
   render() {
     const { classes } = this.props;
@@ -36,7 +36,7 @@ class Navbar extends Component {
             <Typography variant="h6" color="inherit" className={classes.grow}>
               News
             </Typography>
-            <Button color="inherit">Login</Button>
+            <ControlDialogs />
           </Toolbar>
         </AppBar>
       </div>
