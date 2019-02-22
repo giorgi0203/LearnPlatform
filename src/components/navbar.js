@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ControlDialogs from './auth/controlDialogs';
+import Auth from './auth';
 
 
 const styles = {
@@ -34,9 +34,9 @@ class Navbar extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              News
+              მენიუ
             </Typography>
-            <ControlDialogs />
+            <Auth />
           </Toolbar>
         </AppBar>
       </div>

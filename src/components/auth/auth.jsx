@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 import Login from './login'
 
-class ControlDialogs extends Component {
+class Auth extends Component {
     state = {
         open: false,
-        selectedValue: [],
+        selectedValue: '',
     };
 
     handleClickOpen = () => {
@@ -17,11 +17,12 @@ class ControlDialogs extends Component {
     handleClose = value => {
         this.setState({ selectedValue: value, open: false });
     };
+
   render() {
     return (
         <div>
-            <Button variant="outlined"  onClick={this.handleClickOpen}>
-                Login
+            <Button variant="contained" onClick={this.handleClickOpen}>
+                შესვლა
             </Button>
             <Login
             selectedValue={this.state.selectedValue}
@@ -34,4 +35,4 @@ class ControlDialogs extends Component {
   }
 }
 
-export default ControlDialogs;
+export default Auth;
