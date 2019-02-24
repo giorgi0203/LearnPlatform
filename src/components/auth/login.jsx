@@ -30,7 +30,9 @@ class Login extends Component {
         this.props.onClose(value);
     };
   render() {
-    const { classes, onClose, selectedValue, ...other } = this.props;
+    console.log('dialog',this.props);
+    
+    const { classes, onClose, ...other } = this.props;
     return (
       <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
         <DialogTitle id="simple-dialog-title">ავტორიზაცია</DialogTitle>

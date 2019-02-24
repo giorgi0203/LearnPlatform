@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import reducer from './reducer'
+import { dialogsReducer } from './dialogs'
 export default combineReducers({
-    auth: reducer('auth')
+    dialog: dialogsReducer
 })

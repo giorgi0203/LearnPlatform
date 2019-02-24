@@ -1,33 +1,24 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import Login from './login'
+import Login from './login';
+import {openDialog,closeDialog} from '../../actions/dialogs';
 
 class Auth extends Component {
-    state = {
-        open: false,
-        selectedValue: '',
-    };
 
-    handleClickOpen = () => {
-        this.setState({
-        open: true,
-        });
-    };
 
-    handleClose = value => {
-        this.setState({ selectedValue: value, open: false });
-    };
 
   render() {
+    console.log(this.props);
+      //debugger;
     return (
         <div>
-            <Button variant="contained" onClick={this.handleClickOpen}>
+            <Button variant="contained" onClick={this.props.openDialog}>
                 შესვლა
             </Button>
             <Login
-            selectedValue={this.state.selectedValue}
-            open={this.state.open}
-            onClose={this.handleClose}
+            open={this.props.dialog.dialogVisible}
+            onClose={this.props.closeDialog}
             />
         </div>
     
@@ -35,4 +26,14 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+const mapDispatchToProps =  dispatch => ({
+    openDialog: () => dispatch(openDialog()),
+    closeDialog: () => dispatch(closeDialog())
+})
+
+function mapStateToProps(state) {
+    // console.log(state);
+    return state;
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Auth);
