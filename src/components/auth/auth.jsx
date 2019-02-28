@@ -2,37 +2,41 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Login from './login';
+import Spinner from '../spinners/spinner';
 import {openDialog,closeDialog} from '../../actions/dialogs';
+import {startLoading,stopLoading} from '../../actions/api';
+import spinner from '../spinners/spinner';
 
 class Auth extends Component {
-
-
-
   render() {
-    console.log(this.props);
-      //debugger;
+
+    
     return (
         <div>
+          
             <Button variant="contained" onClick={this.props.openDialog}>
                 შესვლა
             </Button>
             <Login
-            open={this.props.dialog.dialogVisible}
-            onClose={this.props.closeDialog}
+              open={this.props.dialog.dialogVisible}
+              onClose={this.props.closeDialog}
+              startLoading={this.props.startLoading}
             />
+            {this.props.api.loading?(<Spinner />):('')}
+            {/* registracia */}
         </div>
-    
     )
   }
 }
 
 const mapDispatchToProps =  dispatch => ({
     openDialog: () => dispatch(openDialog()),
-    closeDialog: () => dispatch(closeDialog())
+    closeDialog: () => dispatch(closeDialog()),
+    startLoading: () => dispatch(startLoading())
 })
 
 function mapStateToProps(state) {
-    // console.log(state);
+  console.log(state);
     return state;
 }
 

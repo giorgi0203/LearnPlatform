@@ -37,6 +37,7 @@ class Navbar extends Component {
               მენიუ
             </Typography>
             <Auth />
+            
           </Toolbar>
         </AppBar>
       </div>

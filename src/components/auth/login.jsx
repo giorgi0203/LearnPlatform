@@ -1,64 +1,86 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
-import blue from '@material-ui/core/colors/blue';
 
-const styles = {
-    avatar: {
-      backgroundColor: blue[100],
-      color: blue[600],
-    },
-};
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
 
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const styles = theme => ({
+  paper: {
+    position: 'absolute',
+    // width: theme.spacing.unit * 40,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+    outline: 'none',
+  },
+  formInputs: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+});
 class Login extends Component {
-    handleClose = () => {
-        this.props.onClose(this.props.selectedValue);
-    };
+  state = {
+    open: this.props.open,
+  };
 
-    handleListItemClick = value => {
-        this.props.onClose(value);
-    };
   render() {
-    console.log('dialog',this.props);
+    const { classes } = this.props;
     
-    const { classes, onClose, ...other } = this.props;
     return (
-      <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-        <DialogTitle id="simple-dialog-title">ავტორიზაცია</DialogTitle>
-
-        <TextField
-          required
-          id="standard-required"
-          label="Required"
-          defaultValue="Hello World"
-          margin="normal"
-        />
-        <TextField
-          id="standard-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          margin="normal"
-        />
-      </Dialog>
-    )
+      <div>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.props.open}
+          onClose={this.props.onClose}
+        >
+          <div style={getModalStyle()} className={classes.paper}>
+            <Typography variant="h6" id="modal-title">
+              ავტორიზაცია
+            </Typography>
+            <TextField
+              id="standard-userName-input"
+              label="User Name"
+              className={classes.formInputs}
+              type="text"
+              autoComplete="current-password"
+              margin="normal"
+            />
+            <TextField
+              id="standard-password-input"
+              label="Password"
+              className={classes.formInputs}
+              type="password"
+              autoComplete="current-password"
+              margin="normal"
+            />
+            <Button variant="contained" color="primary" onClick={this.props.startLoading} className={classes.button}>
+              ავტორიზაცია
+            </Button>
+          </div>
+        </Modal>
+      </div>
+    );
   }
 }
 Login.propTypes = {
-    classes: PropTypes.object.isRequired,
-    onClose: PropTypes.func,
-    selectedValue: PropTypes.string,
+  classes: PropTypes.object.isRequired,
 };
 
 
