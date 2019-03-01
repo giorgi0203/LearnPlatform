@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const styles = theme => ({
   progress: {
     margin: theme.spacing.unit * 2,
     position: 'absolute',
-    top: '500%',
+    top: '50%',
     left: '50%',
   },
 });
 
-function Spinner(props) {
-  const { classes } = props;
+class Spinner extends Component {
+  // 
+  
+  render(){
+  console.log('spinner',this.props);
+  const { classes } = this.props;
   return (
     <div>
-      <CircularProgress className={classes.progress} />
+      {this.props.isLoading?(<CircularProgress className={classes.progress} />):('')} 
     </div>
   );
+};
 }
 
-Spinner.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(Spinner);
+const mapStateToProps = state => {
+  console.log(state);
+    return {isLoading: state.api.loading};
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(Spinner));

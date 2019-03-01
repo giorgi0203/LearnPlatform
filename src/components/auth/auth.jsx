@@ -13,7 +13,6 @@ class Auth extends Component {
     
     return (
         <div>
-          
             <Button variant="contained" onClick={this.props.openDialog}>
                 შესვლა
             </Button>
@@ -22,7 +21,6 @@ class Auth extends Component {
               onClose={this.props.closeDialog}
               startLoading={this.props.startLoading}
             />
-            {this.props.api.loading?(<Spinner />):('')}
             {/* registracia */}
         </div>
     )
