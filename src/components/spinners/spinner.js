@@ -15,16 +15,14 @@ const styles = theme => ({
 });
 
 class Spinner extends Component {
-  // 
-  
   render(){
-  console.log('spinner',this.props);
-  const { classes } = this.props;
-  return (
-    <div>
-      {this.props.isLoading?(<CircularProgress className={classes.progress} />):('')} 
-    </div>
-  );
+    console.log('spinner',this.props);
+    const { classes } = this.props;
+    return (
+      <div>
+        {this.props.isLoading?(<CircularProgress className={classes.progress} />):('')} 
+      </div>
+    );
 };
 }
 
