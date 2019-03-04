@@ -22,6 +22,13 @@ app.use(
   })
 );
 
+app.get(
+  "/",
+  (req,res)=>{
+    res.send("<a href='/graphql/api'>api</a>");
+  }
+);
+
 
 mongoose.connect(`
     mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0-cfujr.gcp.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`

@@ -1,10 +1,26 @@
 
 const bc = require("bcryptjs")
 const User = require("../../models/user")
+const Post = require("../../models/post")
+
+const user = async userID => {
+    try {
+        const user = await User.findById(userID);
+        return {...user._doc};
+    } catch (error) {
+        
+    }
+}
 
 module.exports = {
-    posts: ()=>{
-        return {}
+    posts: async ()=>{
+        const posts = await Post.find();
+
+        return posts.map((post)=>{
+            console.log({...post._doc,creator:user.bind(this,post.creator)});
+            
+            return {...post._doc,creator:user.bind(this,post.creator)}
+        })
     },
     createUser: async (args)=>{
         try{
@@ -31,6 +47,21 @@ module.exports = {
         }
     },
     createPost: async (args)=>{
-        
+        try {
+            const post = new Post({
+                title:args.postInput.title,
+                description:args.postInput.description,
+                content:args.postInput.content,
+                creator: '5c7beb9d0ae1d604503f0a13'
+            })
+            const createdPost = await post.save();
+            const creator = await User.findById('5c7beb9d0ae1d604503f0a13');
+
+            creator.createdPosts.push(createdPost);
+            await creator.save();
+            return {...createdPost._doc}
+        } catch (err) {
+            throw err;
+        }
     }
 }

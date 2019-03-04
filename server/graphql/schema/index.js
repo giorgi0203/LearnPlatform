@@ -34,8 +34,15 @@ module.exports = buildSchema(`
        
     }
 
+    type AuthData{
+        user: User!
+        token: String!
+        tokenExpiration: Int!
+    }
+
     type RootQuery{
         posts: [Post!]!#ყველა პოსტის გამოტანა
+        login(email: String!, password: String!): AuthData!
     }
 
     type RootMutation {
