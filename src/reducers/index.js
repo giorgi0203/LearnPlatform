@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux'
 import { dialogsReducer } from './dialogs'
-import { apiReducer } from './api'
+import { loadingReducer } from './loading'
+import { authReducer } from './auth'
+import { postsReducer } from './posts'
 export default combineReducers({
     dialog: dialogsReducer,
-    api:apiReducer
+    loading:loadingReducer,
+    auth:authReducer,
+    posts:postsReducer
 })

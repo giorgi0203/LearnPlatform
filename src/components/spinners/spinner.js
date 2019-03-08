@@ -16,7 +16,6 @@ const styles = theme => ({
 
 class Spinner extends Component {
   render(){
-    console.log('spinner',this.props);
     const { classes } = this.props;
     return (
       <div>
@@ -29,7 +28,7 @@ class Spinner extends Component {
 
 const mapStateToProps = state => {
   console.log(state);
-    return {isLoading: state.api.loading};
+    return {isLoading: state.loading.loading};
 }
 
 export default connect(mapStateToProps)(withStyles(styles)(Spinner));

@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Login from './login';
 import Spinner from '../spinners/spinner';
 import {openDialog,closeDialog} from '../../actions/dialogs';
-import {startLoading,stopLoading} from '../../actions/api';
+import {login,register} from '../../actions/auth';
 import spinner from '../spinners/spinner';
 
 class Auth extends Component {
@@ -19,7 +19,7 @@ class Auth extends Component {
             <Login
               open={this.props.dialog.dialogVisible}
               onClose={this.props.closeDialog}
-              startLoading={this.props.startLoading}
+              login={this.props.login}
             />
             {/* registracia */}
         </div>
@@ -30,11 +30,10 @@ class Auth extends Component {
 const mapDispatchToProps =  dispatch => ({
     openDialog: () => dispatch(openDialog()),
     closeDialog: () => dispatch(closeDialog()),
-    startLoading: () => dispatch(startLoading())
+    login: () => dispatch(login())
 })
 
 function mapStateToProps(state) {
-  console.log(state);
     return state;
 }
 

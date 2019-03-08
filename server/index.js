@@ -1,3 +1,4 @@
+//require('dotenv/config')
 const express = require("express");
 const bodyParse = require("body-parser");
 const graphql = require("express-graphql");
@@ -12,7 +13,18 @@ const app = express();
 const API_PORT = 30001;
 
 app.use(bodyParse.json());
-
+app.use((req,res,next)=>{
+  res.setHeader('Access-Control-Allow-Origin','*');
+  res.setHeader('Access-Control-Allow-Methods','POST,GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers','Content-Type, Authorization');
+  console.log(req.body);
+  //ბრაუზერი წინასწარ აგზავნის ამ მეთოდს იმის გასარკვევად თუ რომელ მეთოდებს იღებს სერვერი მაგრამ
+  //graphql_ს არ შეუძლია ამ რექვესთის დამუშავება ამიტომ წარმატების კოდს ვაბრუნებთ უკან
+  if (req.method == 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.use(
   "/graphql/api",
   graphql({
@@ -28,6 +40,7 @@ app.get(
     res.send("<a href='/graphql/api'>api</a>");
   }
 );
+console.log(process.env.MONGO_DB_USER);
 
 
 mongoose.connect(`

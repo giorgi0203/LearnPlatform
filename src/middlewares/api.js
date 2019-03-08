@@ -1,13 +1,13 @@
-import {START_LOADING,STOP_LOADING,OK_LOADING,stopLoading} from "../actions/api";
-import {closeDialog} from "../actions/dialogs";
 
-// this middleware care only for API calls
+import {LOGIN} from "../actions/auth";
+import {SHOW_SPINNER,HIDE_SPINNER,showSpinner} from "../actions/spinner";
+import {closeDialog} from "../actions/dialogs";
+import axios from "axios"
+
+// თუ მოხდა მოქმედება რომელიც სერვერთან კავშირი სჭირდება მისი და მისი პასუხის დამუშავება ხდება აქ
 export const api = ({dispatch}) => next => action => {
- next(action)
-  if(action.type == START_LOADING) {
-      console.log(action,dispatch,next);
-      dispatch(closeDialog());
-      setTimeout(()=>dispatch(stopLoading()),3000);
+  if (action.type == LOGIN) {
+    
   }
-  //return next(action)
+  return next(action)
 };

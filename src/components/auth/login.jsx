@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 function getModalStyle() {
   const top = 50;
@@ -29,6 +31,7 @@ const styles = theme => ({
   formInputs: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
+    display: 'block',
   },
   button: {
     margin: theme.spacing.unit,
@@ -61,6 +64,13 @@ class Login extends Component {
               type="text"
               autoComplete="current-password"
               margin="normal"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               id="standard-password-input"
@@ -69,8 +79,15 @@ class Login extends Component {
               type="password"
               autoComplete="current-password"
               margin="normal"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
             />
-            <Button variant="contained" color="primary" onClick={this.props.startLoading} className={classes.button}>
+            <Button variant="contained" color="primary" onClick={this.props.login} className={classes.button}>
               ავტორიზაცია
             </Button>
           </div>
