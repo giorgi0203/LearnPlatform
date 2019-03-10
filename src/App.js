@@ -4,11 +4,11 @@ import logo from './logo.svg';
 import Navbar from './components/navbar';
 import Spinner from './components/spinners/spinner';
 import PostsList from './components/posts/postsList';
-import Auth from './components/auth/auth';
+import AddForm from './components/posts/addForm';
 import store from './store'
+
 class App extends Component {
   render() {
-    console.log("app",store.getState());
     
     return (
       <Provider store={store}>
@@ -17,7 +17,11 @@ class App extends Component {
         
         <Navbar />
 
-        {store.getState().loading.loading?"":<PostsList />}
+        
+
+        {store.getState().ui.loading?"":<PostsList />}
+
+        <AddForm />
         
       </Provider> 
     );

@@ -27,8 +27,7 @@ class Spinner extends Component {
 
 
 const mapStateToProps = state => {
-  console.log(state);
-    return {isLoading: state.loading.loading};
+    return {isLoading: state.ui.loading};
 }
 
 export default connect(mapStateToProps)(withStyles(styles)(Spinner));

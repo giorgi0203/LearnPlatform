@@ -12,14 +12,15 @@ export const createQuery = (url, payload, meta) => ({
 });
 
 //მოთხოვნის გაგზავნა
-export const sendteQuery = (url, payload, meta) => ({
+export const sendQuery = (url, payload, meta) => ({
   type: SEND_QUERY,
   payload: payload,
   meta: { ...meta, url }
 });
 
 //პასუხის მიღება
-export const okQuery = payload => ({
+export const okQuery = (payload,meta) => ({
   type: OK_QUERY,
-  payload: payload
+  payload: payload,
+  meta:meta
 });

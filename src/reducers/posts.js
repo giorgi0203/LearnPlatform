@@ -1,4 +1,4 @@
-import { GET_ALL_POSTS, GET_ALL_POSTS_OK } from "../actions/posts";
+import { FETCH_ALL_POSTS, FETCH_ALL_POSTS_OK } from "../actions/posts";
 // import {SHOW_DIALOG,HIDE_DIALOG} from '../actions/spinner'
 
 const initState = {
@@ -11,9 +11,9 @@ const initState = {
 */
 export function postsReducer(state = initState, action) {
   switch (action.type) {
-    case GET_ALL_POSTS:
-      return { ...state, loading: true };
-    case GET_ALL_POSTS_OK:
+    case FETCH_ALL_POSTS:
+      return { ...state };
+    case FETCH_ALL_POSTS_OK:
       return { ...state, posts: action.data };
     default:
       return state;

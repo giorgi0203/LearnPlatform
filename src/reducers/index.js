@@ -1,11 +1,8 @@
 import { combineReducers } from 'redux'
-import { dialogsReducer } from './dialogs'
-import { loadingReducer } from './loading'
-import { authReducer } from './auth'
+import { uiReducer } from './ui'
 import { postsReducer } from './posts'
+import { apiReducer } from './api'
 export default combineReducers({
-    dialog: dialogsReducer,
-    loading:loadingReducer,
-    auth:authReducer,
+    ui: uiReducer,
     posts:postsReducer
 })

@@ -1,9 +1,9 @@
 export const PREFIX = '[POSTS]'
-export const GET_ALL_POSTS  = `${PREFIX} GET_ALL_POSTS`;
-export const GET_ALL_POSTS_OK  = `${PREFIX} GET_ALL_POSTS_OK`;
+export const FETCH_ALL_POSTS  = `${PREFIX} FETCH_ALL_POSTS`;
+export const FETCH_ALL_POSTS_OK  = `${PREFIX} FETCH_ALL_POSTS_OK`;
 
 
 //
 export const fetchPosts = () => ({
-  type: GET_ALL_POSTS
+  type: FETCH_ALL_POSTS
 });

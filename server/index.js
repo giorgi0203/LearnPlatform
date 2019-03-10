@@ -17,7 +17,6 @@ app.use((req,res,next)=>{
   res.setHeader('Access-Control-Allow-Origin','*');
   res.setHeader('Access-Control-Allow-Methods','POST,GET,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers','Content-Type, Authorization');
-  console.log(req.body);
   //ბრაუზერი წინასწარ აგზავნის ამ მეთოდს იმის გასარკვევად თუ რომელ მეთოდებს იღებს სერვერი მაგრამ
   //graphql_ს არ შეუძლია ამ რექვესთის დამუშავება ამიტომ წარმატების კოდს ვაბრუნებთ უკან
   if (req.method == 'OPTIONS') {
@@ -40,7 +39,6 @@ app.get(
     res.send("<a href='/graphql/api'>api</a>");
   }
 );
-console.log(process.env.MONGO_DB_USER);
 
 
 mongoose.connect(`
