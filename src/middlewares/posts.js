@@ -5,11 +5,17 @@ import axios from "axios";
 // თუ მოხდა მოქმედება რომელიც სერვერთან კავშირი სჭირდება მისი და მისი პასუხის დამუშავება ხდება აქ
 export const posts = ({ dispatch }) => next => action => {
   if (action.type == GET_ALL_POSTS) {
-    //dispatch(showSpinner());
+    dispatch(showSpinner());
     const reqBody = {
       query: `query {
                   posts {
                     title
+                    description
+                    content
+                    creator{
+                      name
+                      email
+                    }
                   }
                 }
         `

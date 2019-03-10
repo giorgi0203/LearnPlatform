@@ -8,6 +8,8 @@ import Auth from './components/auth/auth';
 import store from './store'
 class App extends Component {
   render() {
+    console.log("app",store.getState());
+    
     return (
       <Provider store={store}>
       
@@ -15,7 +17,7 @@ class App extends Component {
         
         <Navbar />
 
-        <PostsList/>
+        {store.getState().loading.loading?"":<PostsList />}
         
       </Provider> 
     );
