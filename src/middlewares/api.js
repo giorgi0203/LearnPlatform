@@ -1,5 +1,5 @@
 
-import {LOGIN} from "../actions/auth";
+import {LOGIN} from "../actions/api";
 import {SHOW_SPINNER,HIDE_SPINNER,showSpinner} from "../actions/spinner";
 import {closeDialog} from "../actions/dialogs";
 import axios from "axios"
