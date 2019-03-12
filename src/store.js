@@ -9,7 +9,7 @@ const store = createStore(reducers,
     composeEnhancers(
             applyMiddleware(
                 ...api,
-                posts
+                ...posts
             )
         )
     );

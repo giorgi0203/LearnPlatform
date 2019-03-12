@@ -19,7 +19,7 @@ export const apiSend = ({ dispatch }) => next => action => {
     dispatch(showSpinner());
     
     axios.post(action.meta.url, 
-      action.payload,
+      JSON.stringify(action.payload),
       headers
       )
     .then(function (response) {

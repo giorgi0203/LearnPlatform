@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
-import PostCard from "./postCard";
+import Card from "./card";
 import { fetchPosts } from "../../actions/posts";
 
 const styles = theme => ({
@@ -13,13 +13,22 @@ const styles = theme => ({
 });
 class PostsList extends Component {
   componentDidMount() {
-    this.props.fetchPosts();
+    //მოთხოვნის სტანდარტი რომელიც შეგვიძლია გავაკეთოთ ნებისმიერი კომპონენტიდან თუ გვაქვს შესაბამისი მიდლვეარი
+    this.props.fetchPosts({query:`
+      query{
+        posts{
+          title
+          description
+          content
+        }
+      }
+    `});
   }
   render() {
     let Posts = <h1>პოსტები ცარიელია</h1>;
 
     Posts = this.props.posts.posts.map((item, key) => (
-      <PostCard
+      <Card
         key={item.title}
         header={{
           title: item.title,
@@ -37,7 +46,7 @@ class PostsList extends Component {
 
 const mapStateToProps = state => ({ posts: state.posts });
 const mapDispatchToProps = dispatch => ({
-  fetchPosts: () => dispatch(fetchPosts())
+  fetchPosts: (payload) => dispatch(fetchPosts(payload))
 });
 export default connect(
   mapStateToProps,

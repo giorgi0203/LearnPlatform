@@ -3,8 +3,8 @@ import { Provider } from 'react-redux'
 import logo from './logo.svg';
 import Navbar from './components/navbar';
 import Spinner from './components/spinners/spinner';
-import PostsList from './components/posts/postsList';
-import AddForm from './components/posts/addForm';
+import List from './components/posts/list';
+import Form from './components/posts/form';
 import store from './store'
 
 class App extends Component {
@@ -17,11 +17,9 @@ class App extends Component {
         
         <Navbar />
 
-        
+        {store.getState().ui.loading?"":<List />}
 
-        {store.getState().ui.loading?"":<PostsList />}
-
-        <AddForm />
+        <Form />
         
       </Provider> 
     );

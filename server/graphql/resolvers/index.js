@@ -48,10 +48,12 @@ module.exports = {
     try {
       const post = new Post({
         title: args.postInput.title,
-        description: args.postInput.description,
-        content: args.postInput.content,
+        description: args.postInput.description.replace('"','\"'),
+        content: args.postInput.content.replace('"','\"'),
         creator: "5c7beb9d0ae1d604503f0a13"
       });
+      console.log(post);
+      
       const createdPost = await post.save();
       const creator = await User.findById("5c7beb9d0ae1d604503f0a13");
 
