@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "blog": {
+      "schemaPath": "graphql/schema/index.graphql"
+    }
+  }
+}
