@@ -15,12 +15,13 @@ const API_PORT = 30001;
 
 app.use(bodyParser.json());
 app.use((req,res,next)=>{
+  console.log(req);
   res.setHeader('Access-Control-Allow-Origin','*');
   res.setHeader('Access-Control-Allow-Methods','POST,GET,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers','Content-Type, Authorization');
   //ბრაუზერი წინასწარ აგზავნის ამ მეთოდს იმის გასარკვევად თუ რომელ მეთოდებს იღებს სერვერი მაგრამ
   //graphql_ს არ შეუძლია ამ რექვესთის დამუშავება ამიტომ წარმატების კოდს ვაბრუნებთ უკან
-  console.log(req.body);
+  
   
   if (req.method == 'OPTIONS') {
     return res.sendStatus(200);
