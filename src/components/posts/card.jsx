@@ -17,6 +17,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 import p1 from '../../images/p1.png';
 import p2 from '../../images/p2.png';
 
@@ -46,14 +52,23 @@ const styles = theme => ({
     backgroundColor: red[500],
   },
 });
-
+const options = [
+  {text:'შეცვლა',icon:<EditIcon />},
+  {text:'წაშლა',icon:<DeleteIcon />}
+]
 class RecipeReviewCard extends React.Component {
-  state = { expanded: false };
+  state = { expanded: false,open: false,anchorEl:null };
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
+  handleMenuClose = () => {
+    this.setState({ open: false,anchorEl:null });
+  };
+  handleMenuOpen = (event) => {
+    this.setState({ open: true,anchorEl:event.currentTarget  });
+  };
   render() {
     const { classes } = this.props;
 
@@ -66,13 +81,30 @@ class RecipeReviewCard extends React.Component {
             </Avatar>
           }
           action={
-            <IconButton>
+            <IconButton onClick={this.handleMenuOpen}>
               <MoreVertIcon />
             </IconButton>
           }
           title={this.props.header.title}
-          subheader="Sember 14, 2016"
+          subheader={this.props.header.creationTime}
         />
+
+        <Menu
+          id="long-menu"
+          anchorEl={this.state.anchorEl}
+          open={this.state.open}
+          onClose={this.handleMenuClose}
+        >
+          {options.map(option => (
+            <MenuItem key={option.text} selected={option === 'Pyxis'} onClick={this.handleMenuClose}>
+              <ListItemIcon>
+                {option.icon}
+              </ListItemIcon>
+              <ListItemText primary={option.text}/>
+            </MenuItem>
+          ))}
+        </Menu>
+
         <CardMedia
           className={classes.media}
           image={p2}

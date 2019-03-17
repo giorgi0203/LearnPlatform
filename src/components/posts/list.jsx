@@ -17,6 +17,7 @@ class PostsList extends Component {
     this.props.fetchPosts({query:`
       query{
         posts{
+          _id
           title
           description
           content
@@ -29,10 +30,10 @@ class PostsList extends Component {
 
     Posts = this.props.posts.posts.map((item, key) => (
       <Card
-        key={item.title}
+        key={item._id}
         header={{
           title: item.title,
-          creationTime: "",
+          creationTime: item._id,
           description: item.description,
           content: item.content
         }}
