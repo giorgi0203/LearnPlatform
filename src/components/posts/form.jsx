@@ -17,6 +17,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 
 import { addPost } from "../../actions/posts";
+import { openEditor,closeEditor } from "../../actions/ui";
 
 import Editor from "./editor";
 import "react-quill/dist/quill.snow.css";
@@ -47,7 +48,7 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
-      open: false,
+
       postData: { title:"",content:"",description:"" }
     };
 
@@ -67,12 +68,8 @@ class Form extends React.Component {
     });
   }
 
-  handleOpen = () => {
-    //შეილება ასინქონული იყოს
-    this.setState({ open: true });
-  };
-  handleClose = () => {
-    this.setState({ open: false });
+  handleOpen = () => {    
+    this.props.openEditor({});
   };
 
   handleSave = () => {
@@ -87,20 +84,21 @@ class Form extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    console.log(this.props);
+    
     return (
       <div className={classes.dialogContent}>
         <Dialog
           fullScreen
-          open={this.state.open}
-          onClose={this.handleClose}
+          open={this.props.ui.editorVisible}
+          onClose={this.props.closeEditor}
           TransitionComponent={Transition}
         >
           <AppBar className={classes.appBar}>
             <Toolbar>
               <IconButton
                 color="inherit"
-                onClick={this.handleClose}
+                onClick={this.props.closeEditor}
                 aria-label="Close"
               >
                 <CloseIcon />
@@ -154,10 +152,12 @@ class Form extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  state: state
+  ui: state.ui
 });
 const mapDispatchToProps = dispatch => ({
-  save: (payload) => dispatch(addPost(payload))
+  save: (payload) => dispatch(addPost(payload)),
+  openEditor: (payload) => dispatch(openEditor(payload)),
+  closeEditor: () => dispatch(closeEditor())
 });
 
 export default connect(

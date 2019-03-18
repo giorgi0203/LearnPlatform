@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
-import Card from "./card";
+import Card from "./card/card";
 import { fetchPosts } from "../../actions/posts";
 
 const styles = theme => ({
