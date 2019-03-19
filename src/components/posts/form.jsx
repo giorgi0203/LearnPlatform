@@ -19,7 +19,12 @@ import Slide from "@material-ui/core/Slide";
 import { addPost } from "../../actions/posts";
 import { openEditor,closeEditor } from "../../actions/ui";
 
-import Editor from "./editor";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+import {modules,formats} from "./editorOptions";
+
+
 import "react-quill/dist/quill.snow.css";
 
 const styles = theme => ({
@@ -36,6 +41,12 @@ const styles = theme => ({
   },
   dialogContent: {
     height: "100%"
+  },
+  editor:{
+    height:'60%'
+  },
+  editorHolder:{
+    height: '100%',
   }
 });
 
@@ -48,10 +59,10 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
-
       postData: { title:"",content:"",description:"" }
     };
-
+    console.log(this.state);
+    
     this.handleChange = this.handleChange.bind(this);
     this.handleTitleDescriptionChange = this.handleTitleDescriptionChange.bind(this);
 
@@ -62,6 +73,7 @@ class Form extends React.Component {
       postData:{...this.state.postData,content:html}});
   }
   handleTitleDescriptionChange (event) {
+    console.log(this.state.postData);
     
   	this.setState({ 
       postData:{...this.state.postData,[event.target.id]:event.target.value}
@@ -84,7 +96,6 @@ class Form extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props);
     
     return (
       <div className={classes.dialogContent}>
@@ -114,6 +125,7 @@ class Form extends React.Component {
           </AppBar>
           <TextField
           id="title"
+          value={this.state.postData.title}
           // label="სათაური"
           style={{ margin: 10,padding:10 }}
           onChange={this.handleTitleDescriptionChange}
@@ -140,7 +152,15 @@ class Form extends React.Component {
           }}
           />
           {/* posts text editor */}
-          <Editor html={this.state.postData.content} handleChange={this.handleChange}/>
+          <ReactQuill 
+          className={classes.editor}
+          // theme={this.state.theme}
+          onChange={this.handleChange}
+          value={this.state.postData.content}
+          modules={modules}
+          formats={formats}
+          // bounds={'.app'}
+         />
         </Dialog>
 
         <Fab onClick={this.handleOpen} className={classes.fab}>
@@ -152,7 +172,8 @@ class Form extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  ui: state.ui
+  ui: state.ui,
+  post: state.posts.currentPost
 });
 const mapDispatchToProps = dispatch => ({
   save: (payload) => dispatch(addPost(payload)),

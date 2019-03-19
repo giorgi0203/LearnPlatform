@@ -45,4 +45,4 @@ class Header extends React.Component {
   }
 }
 
-export default withStyles(styles)(Header);
+export default (withStyles(styles)(Header));

@@ -26,10 +26,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Header from "./Header";
 import Content from "./Content";
 
+import { openEditor, closeEditor } from "../../../actions/ui";
 
 const styles = theme => ({
   card: {
-    maxWidth: 600,
+    maxWidth: 1000,
     margin: 20
   },
   media: {
@@ -66,6 +67,7 @@ class RecipeReviewCard extends React.Component {
 
   handleMenuClose = () => {
     this.setState({ open: false, anchorEl: null });
+    this.props.openEditor({...this.props.header});
   };
   handleMenuOpen = event => {
     this.setState({ open: true, anchorEl: event.currentTarget });
@@ -86,16 +88,20 @@ class RecipeReviewCard extends React.Component {
           open={this.state.open}
           onClose={this.handleMenuClose}
         >
-          {options.map(option => (
-            <MenuItem
-              key={option.text}
-              selected={option === "Pyxis"}
-              onClick={this.handleMenuClose}
-            >
-              <ListItemIcon>{option.icon}</ListItemIcon>
-              <ListItemText primary={option.text} />
-            </MenuItem>
-          ))}
+          <MenuItem
+            key="edit"
+            onClick={this.handleMenuClose}
+          >
+            <ListItemIcon><EditIcon /></ListItemIcon>
+            <ListItemText primary="შეცვლა" />
+          </MenuItem>
+          <MenuItem
+            key="delete"
+            onClick={this.handleMenuClose}
+          >
+            <ListItemIcon><DeleteIcon /></ListItemIcon>
+            <ListItemText primary="წაშლა" />
+          </MenuItem>
         </Menu>
         <Content
           description={this.props.header.description}
@@ -109,5 +115,12 @@ class RecipeReviewCard extends React.Component {
 }
 
 const mapStateToProps = state => ({ state });
+const mapDispatchToProps = dispatch => ({
+  openEditor: payload => dispatch(openEditor(payload)),
+  closeEditor: () => dispatch(closeEditor())
+});
 
-export default connect(mapStateToProps)(withStyles(styles)(RecipeReviewCard));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(RecipeReviewCard));

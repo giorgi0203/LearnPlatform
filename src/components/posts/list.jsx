@@ -7,7 +7,7 @@ import { fetchPosts } from "../../actions/posts";
 const styles = theme => ({
   List: {
     margin: "auto",
-    maxWidth: 600,
+    maxWidth: 800,
     left: "50%"
   }
 });

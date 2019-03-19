@@ -1,9 +1,11 @@
 import { FETCH_ALL_POSTS, FETCH_ALL_POSTS_OK } from "../actions/posts";
+import { SHOW_EDITOR } from "../actions/ui";
 // import {SHOW_DIALOG,HIDE_DIALOG} from '../actions/spinner'
 
 const initState = {
   loading: false,
-  posts: []
+  posts: [],
+  currentPost:{}
 };
 
 /*
@@ -15,6 +17,9 @@ export function postsReducer(state = initState, action) {
       return { ...state };
     case FETCH_ALL_POSTS_OK:
       return { ...state, posts: action.data };
+    case SHOW_EDITOR:
+      return { ...state, currentPost:action.payload };
+    
     default:
       return state;
   }
