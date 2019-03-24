@@ -9,7 +9,7 @@ let headers = {
 // თუ მოხდა მოქმედება რომელიც სერვერთან კავშირი სჭირდება მისი და მისი პასუხის დამუშავება ხდება აქ
 export const apiCreate = ({ dispatch }) => next => action => {
   next(action);
-  if (action.type == CREATE_QUERY) {
+  if (action.type === CREATE_QUERY) {
     //console.log('create',action);
     
     dispatch(sendQuery(action.meta.url,action.payload,action.meta));
@@ -17,7 +17,7 @@ export const apiCreate = ({ dispatch }) => next => action => {
 };
 
 export const apiSend = ({ dispatch }) => next => action => {
-  if (action.type == SEND_QUERY) {
+  if (action.type === SEND_QUERY) {
     dispatch(showSpinner());
     axios({
       method: 'post',
@@ -39,7 +39,7 @@ export const apiSend = ({ dispatch }) => next => action => {
 
 export const apiOk = ({ dispatch }) => next => action => {
   next(action);
-  if (action.type == OK_QUERY) {
+  if (action.type === OK_QUERY) {
     
     dispatch(hideSpinner());
     dispatch({type:action.meta.onSuccess,data:action.payload});

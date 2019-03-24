@@ -5,7 +5,7 @@ import { SHOW_EDITOR } from "../actions/ui";
 const initState = {
   loading: false,
   posts: [],
-  currentPost:{}
+  currentPostId: ''
 };
 
 /*
@@ -18,7 +18,7 @@ export function postsReducer(state = initState, action) {
     case FETCH_ALL_POSTS_OK:
       return { ...state, posts: action.data };
     case SHOW_EDITOR:
-      return { ...state, currentPost:action.payload };
+      return { ...state, currentPostId:action.payload };
     
     default:
       return state;

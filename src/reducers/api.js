@@ -1,4 +1,4 @@
-import { FETCH_ALL_POSTS, FETCH_ALL_POSTS_OK } from "../actions/posts";
+// import { FETCH_ALL_POSTS, FETCH_ALL_POSTS_OK } from "../actions/posts";
 // import {SHOW_DIALOG,HIDE_DIALOG} from '../actions/spinner'
 
 const initState = {

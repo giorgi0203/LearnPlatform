@@ -1,20 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import classnames from "classnames";
 import Card from "@material-ui/core/Card";
-// import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import red from "@material-ui/core/colors/red";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import CardHeader from "@material-ui/core/CardHeader";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -22,9 +13,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-
-import Header from "./Header";
-import Content from "./Content";
+import Content from "./content";
 
 import { openEditor, closeEditor } from "../../../actions/ui";
 
@@ -54,10 +43,6 @@ const styles = theme => ({
     backgroundColor: red[500]
   }
 });
-const options = [
-  { text: "შეცვლა", icon: <EditIcon /> },
-  { text: "წაშლა", icon: <DeleteIcon /> }
-];
 class RecipeReviewCard extends React.Component {
   state = { expanded: false, open: false, anchorEl: null };
 
@@ -65,9 +50,17 @@ class RecipeReviewCard extends React.Component {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
+  handleEditClick = () => {
+    this.setState({ open: false, anchorEl: null });
+    this.props.openEditor(this.props.postData.id);
+    console.log("card edit button", this.props);
+  };
+  handleDeleteClick = () => {
+    this.setState({ open: false, anchorEl: null });
+  };
+
   handleMenuClose = () => {
     this.setState({ open: false, anchorEl: null });
-    this.props.openEditor({...this.props.header});
   };
   handleMenuOpen = event => {
     this.setState({ open: true, anchorEl: event.currentTarget });
@@ -77,10 +70,19 @@ class RecipeReviewCard extends React.Component {
 
     return (
       <Card className={classes.card}>
-        <Header
-          title={this.props.header.title}
-          subheader={this.props.header.creationTime}
-          handleMenuOpen={this.handleMenuOpen}
+        <CardHeader
+          avatar={
+            <Avatar aria-label="Recipe" className={classes.avatar}>
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton onClick={this.handleMenuOpen}>
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={this.props.postData.title}
+          subheader={this.props.postData.creationTime}
         />
         <Menu
           id="long-menu"
@@ -88,26 +90,24 @@ class RecipeReviewCard extends React.Component {
           open={this.state.open}
           onClose={this.handleMenuClose}
         >
-          <MenuItem
-            key="edit"
-            onClick={this.handleMenuClose}
-          >
-            <ListItemIcon><EditIcon /></ListItemIcon>
+          <MenuItem key="edit" onClick={this.handleEditClick}>
+            <ListItemIcon>
+              <EditIcon />
+            </ListItemIcon>
             <ListItemText primary="შეცვლა" />
           </MenuItem>
-          <MenuItem
-            key="delete"
-            onClick={this.handleMenuClose}
-          >
-            <ListItemIcon><DeleteIcon /></ListItemIcon>
+          <MenuItem key="delete" onClick={this.handleDeleteClick}>
+            <ListItemIcon>
+              <DeleteIcon />
+            </ListItemIcon>
             <ListItemText primary="წაშლა" />
           </MenuItem>
         </Menu>
         <Content
-          description={this.props.header.description}
+          description={this.props.postData.description}
           handleExpandClick={this.handleExpandClick}
           expanded={this.state.expanded}
-          content={this.props.header.content}
+          content={this.props.postData.content}
         />
       </Card>
     );

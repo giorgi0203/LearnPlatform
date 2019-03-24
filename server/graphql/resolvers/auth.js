@@ -26,7 +26,7 @@ module.exports = {
       }
       
       
-      return { user: userConnector.bind(this, existingUser),token:"superSecretToken" };
+      return { user: userConnector.bind(this, existingUser),token:"superSecretToken",tokenExpiration:10 };
     } catch (err) {
       throw err;
     }

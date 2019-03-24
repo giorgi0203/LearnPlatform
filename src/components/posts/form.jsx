@@ -59,13 +59,21 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
-      postData: { title:"",content:"",description:"" }
+      postData: { title:this.props.post.currentPostId,content:"",description:"" }
     };
-    console.log(this.state);
+    
+    console.log("form open form",this.props);
+    // alert();
     
     this.handleChange = this.handleChange.bind(this);
     this.handleTitleDescriptionChange = this.handleTitleDescriptionChange.bind(this);
 
+  }
+
+  componentDidMount(){
+    console.log("mount props",this.props);
+    
+    
   }
 
   handleChange (html) {
@@ -97,6 +105,7 @@ class Form extends React.Component {
   render() {
     const { classes } = this.props;
     
+    //alert();
     return (
       <div className={classes.dialogContent}>
         <Dialog
@@ -173,7 +182,7 @@ class Form extends React.Component {
 
 const mapStateToProps = state => ({
   ui: state.ui,
-  post: state.posts.currentPost
+  post: state.posts.currentPostId
 });
 const mapDispatchToProps = dispatch => ({
   save: (payload) => dispatch(addPost(payload)),

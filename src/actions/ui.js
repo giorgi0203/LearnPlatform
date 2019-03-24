@@ -26,7 +26,11 @@ export const closeDialog = () => ({
   type: HIDE_DIALOG
 });
 
-//ტექსტ ედიტორის გახსნის მოქმედება
+
+/**
+ * recive response from server
+ * @param {String} payload post id which to load inside editor
+ */
 export const openEditor = payload => ({
   type: SHOW_EDITOR,
   payload: payload

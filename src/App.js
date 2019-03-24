@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux'
-import logo from './logo.svg';
 import Navbar from './components/navbar';
 import Spinner from './components/spinners/spinner';
 import List from './components/posts/list';

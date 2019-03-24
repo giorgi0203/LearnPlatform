@@ -25,15 +25,20 @@ class PostsList extends Component {
       }
     `});
   }
+  onAction(){
+    
+  }
   render() {
     let Posts = <h1>პოსტები ცარიელია</h1>;
 
     Posts = this.props.posts.posts.map((item, key) => (
       <Card
         key={item._id}
-        header={{
+        onAction={onAction}
+        postData={{
+          id: item._id,
           title: item.title,
-          creationTime: item._id,
+          creationTime: "2019",
           description: item.description,
           content: item.content
         }}
