@@ -11,6 +11,11 @@ module.exports = {
       const existingUser = await User.findOne({
         email: args.email
       });
+      if (!existingUser) {
+        throw new Error(
+          `მომხმარებელი არ მოიძებნა`
+        );
+      }
       res = await bc.compare(args.password,existingUser.password)
       console.log(res);
       
@@ -19,11 +24,7 @@ module.exports = {
             `არასწორი პაროლი`
           );
       }
-      if (!existingUser) {
-        throw new Error(
-          `მომხმარებელი არ მოიძებნა`
-        );
-      }
+      
       
       
       return { user: userConnector.bind(this, existingUser),token:"superSecretToken",tokenExpiration:10 };
