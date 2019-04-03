@@ -1,10 +1,23 @@
 const { buildSchema } = require("graphql");
+var fs = require('fs');
+const glob = require('glob');
+let schema = ``;
+
+let files = glob.sync(__dirname + '/**/*.graphql', {});
+
+files.forEach(file => {
+    schema += fs.readFileSync(file, 'utf8');
+});
+console.log(schema);
+
 //
 //buildSchema _ ში ხდეება მონაცემთ ბაზის სტრუქტურის აგება რათეიბლემი გვაქვს და რა ველები ასევე რა ტიპისებია ისინი
 //მთავარ კომპონენტს წარმოადგენს schema ობიქტი რომელიც შეიცავს თავისთავად query_ს და mutation_ს ხოლო მათი მნიშვნელობები აერთიანებს ყველა ტიპსა თუ ინპუტს
 //რაც შეიძლება აპლიკაციაში დაგვჭირდეს
 //
-module.exports = buildSchema(`
+module.exports = buildSchema(schema);
+/**
+ * `
     #მომხმარებლის აღწერა
     type User{
         _id: ID!
@@ -51,8 +64,6 @@ module.exports = buildSchema(`
         deletePost(postID: ID): Post
         createUser(userInput: UserInput): User
     }
-    schema {
-        query: RootQuery
-        mutation: RootMutation
-    }
-`);
+    
+`
+ */

@@ -1,0 +1,6 @@
+
+type AuthData {
+  user: User!
+  token: String!
+  tokenExpiration: Int!
+}

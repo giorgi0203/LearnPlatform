@@ -1,0 +1,5 @@
+
+type RootQuery {
+  posts: [Post!]! #ყველა პოსტის გამოტანა
+  login(email: String!, password: String!): AuthData!
+}

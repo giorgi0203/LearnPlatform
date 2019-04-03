@@ -1,0 +1,14 @@
+
+type Post {
+  _id: ID!
+  title: String!
+  description: String
+  content: String!
+  creator: User!
+}
+
+input PostInput {
+  title: String!
+  description: String
+  content: String!
+}
