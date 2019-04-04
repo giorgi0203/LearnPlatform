@@ -1,6 +1,6 @@
-const User = require("../../models/user");
-const Post = require("../../models/post");
-const { userConnector } = require("./helpers/connectors");
+const User = require("../../../models/user");
+const Post = require("../../../models/post");
+const { userConnector } = require("../../helpers/connectors");
 module.exports = {
   posts: async () => {
     const posts = await Post.find();
@@ -37,6 +37,16 @@ module.exports = {
         description: args.postInput.description,
         content: args.postInput.content,
       });
+      console.log(post._doc);
+      return { ...post._doc };
+    } catch (err) {
+      throw err;
+    }
+  },
+  deletePost: async args => {
+    try {
+    
+      const post = await Post.findByIdAndRemove(args.postID);
       console.log(post._doc);
       return { ...post._doc };
     } catch (err) {

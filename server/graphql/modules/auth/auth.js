@@ -1,5 +1,5 @@
-const User = require("../../models/user");
-const { userConnector } = require("./helpers/connectors");
+const User = require("../../../models/user");
+const { userConnector } = require("../../helpers/connectors");
 const bc = require("bcryptjs")
 module.exports = {
   login: async args => {

@@ -6,13 +6,12 @@ let headers = {
     "Content-Type": "application/json"
 
 };
+let url = "http://localhost:30001/graphql/api";
 // თუ მოხდა მოქმედება რომელიც სერვერთან კავშირი სჭირდება მისი და მისი პასუხის დამუშავება ხდება აქ
 export const apiCreate = ({ dispatch }) => next => action => {
   next(action);
   if (action.type === CREATE_QUERY) {
-    //console.log('create',action);
-    
-    dispatch(sendQuery(action.meta.url,action.payload,action.meta));
+    dispatch(sendQuery(url,action.payload,action.meta));
   }
 };
 
@@ -26,7 +25,7 @@ export const apiSend = ({ dispatch }) => next => action => {
       headers
       })
     .then(function (response) {
-      dispatch(okQuery(response.data.data.posts,{onSuccess:action.meta.onSuccess}));
+      dispatch(okQuery(response.data));
     })
     .catch(function (error) {
       console.log(error);
@@ -42,7 +41,7 @@ export const apiOk = ({ dispatch }) => next => action => {
   if (action.type === OK_QUERY) {
     
     dispatch(hideSpinner());
-    dispatch({type:action.meta.onSuccess,data:action.payload});
+    //dispatch({type:action.meta.onSuccess,data:action.payload});
   }
 };
 

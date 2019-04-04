@@ -5,10 +5,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,7 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 
-import { addPost } from "../../actions/posts";
+import { createQuery } from "../../actions/api";
 import { openEditor,closeEditor } from "../../actions/ui";
 
 import ReactQuill from 'react-quill';
@@ -59,7 +56,7 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
-      postData: { title:this.props.post.currentPostId,content:"",description:"" }
+      postData: { title:"",content:"",description:"" }
     };
     
     console.log("form open form",this.props);
@@ -181,11 +178,10 @@ class Form extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  ui: state.ui,
-  post: state.posts.currentPostId
+  ui: state.ui
 });
 const mapDispatchToProps = dispatch => ({
-  save: (payload) => dispatch(addPost(payload)),
+  save: (payload) => dispatch(createQuery(payload)),
   openEditor: (payload) => dispatch(openEditor(payload)),
   closeEditor: () => dispatch(closeEditor())
 });

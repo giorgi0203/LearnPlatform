@@ -3,9 +3,7 @@ import { SHOW_EDITOR } from "../actions/ui";
 // import {SHOW_DIALOG,HIDE_DIALOG} from '../actions/spinner'
 
 const initState = {
-  loading: false,
-  posts: [],
-  currentPostId: ''
+  posts: []
 };
 
 /*
@@ -13,13 +11,8 @@ const initState = {
 */
 export function postsReducer(state = initState, action) {
   switch (action.type) {
-    case FETCH_ALL_POSTS:
-      return { ...state };
     case FETCH_ALL_POSTS_OK:
       return { ...state, posts: action.data };
-    case SHOW_EDITOR:
-      return { ...state, currentPostId:action.payload };
-    
     default:
       return state;
   }

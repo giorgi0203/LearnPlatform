@@ -10,10 +10,10 @@ export const OK_QUERY = `${PREFIX} OK_QUERY`;
  * @param {String} payload 
  * @param {String|Number} meta 
  */
-export const createQuery = (url, payload, meta) => ({
+export const createQuery = (payload, meta) => ({
   type: CREATE_QUERY,
   payload: payload,
-  meta: { ...meta, url }
+  meta: { ...meta }
 });
 
 /**

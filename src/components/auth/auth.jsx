@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Login from './login';
-import Spinner from '../spinners/spinner';
 import {openDialog,closeDialog} from '../../actions/ui';
-// import {login,register} from '../../actions/auth';
-// import spinner from '../spinners/spinner';
 
 class Auth extends Component {
   render() {

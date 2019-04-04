@@ -16,6 +16,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Content from "./content";
 
 import { openEditor, closeEditor } from "../../../actions/ui";
+import { createQuery } from "../../../actions/api";
 
 const styles = theme => ({
   card: {
@@ -57,6 +58,13 @@ class RecipeReviewCard extends React.Component {
   };
   handleDeleteClick = () => {
     this.setState({ open: false, anchorEl: null });
+    this.props.createQuery({query:`
+      mutation{
+        deletePost(postID:"${this.props.postData.id}"){
+          title
+        }
+      }
+    `});
   };
 
   handleMenuClose = () => {
@@ -108,6 +116,7 @@ class RecipeReviewCard extends React.Component {
           handleExpandClick={this.handleExpandClick}
           expanded={this.state.expanded}
           content={this.props.postData.content}
+          image={this.props.image}
         />
       </Card>
     );
@@ -117,7 +126,8 @@ class RecipeReviewCard extends React.Component {
 const mapStateToProps = state => ({ state });
 const mapDispatchToProps = dispatch => ({
   openEditor: payload => dispatch(openEditor(payload)),
-  closeEditor: () => dispatch(closeEditor())
+  closeEditor: () => dispatch(closeEditor()),
+  createQuery: payload => dispatch(createQuery(payload))
 });
 
 export default connect(

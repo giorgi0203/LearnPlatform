@@ -10,7 +10,7 @@ export const EDIT_POST_OK  = `${PREFIX} EDIT_POST_OK`;
 
 //
 export const fetchPosts = (payload) => ({
-  type: FETCH_ALL_POSTS,
+  type: FETCH_ALL_POSTS_OK,
   payload: payload
 });
 

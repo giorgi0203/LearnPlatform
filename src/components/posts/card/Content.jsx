@@ -32,6 +32,7 @@ const styles = theme => ({
       duration: theme.transitions.duration.shortest
     })
   },
+  
   expandOpen: {
     transform: "rotate(180deg)"
   },
@@ -45,7 +46,7 @@ class Content extends React.Component {
 
     return (
       <div>
-        <CardMedia className={classes.media} title="Paella dish" />
+        <CardMedia className={classes.media} title="Paella dish" image={this.props.image}/>
         <CardContent>
           <Typography component="p">{this.props.description}</Typography>
         </CardContent>
