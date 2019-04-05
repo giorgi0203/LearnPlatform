@@ -15,8 +15,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Content from "./content";
 
-import { openEditor, closeEditor } from "../../../actions/ui";
-import { createQuery } from "../../../actions/api";
+// import { openEditor, closeEditor } from "../../../actions/ui";
+// import { createQuery } from "../../../actions/api";
 
 const styles = theme => ({
   card: {
@@ -125,9 +125,9 @@ class RecipeReviewCard extends React.Component {
 
 const mapStateToProps = state => ({ state });
 const mapDispatchToProps = dispatch => ({
-  openEditor: payload => dispatch(openEditor(payload)),
-  closeEditor: () => dispatch(closeEditor()),
-  createQuery: payload => dispatch(createQuery(payload))
+  // openEditor: payload => dispatch(openEditor(payload)),
+  // closeEditor: () => dispatch(closeEditor()),
+  // createQuery: payload => dispatch(createQuery(payload))
 });
 
 export default connect(

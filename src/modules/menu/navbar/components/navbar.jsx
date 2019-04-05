@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Auth from '../../../../components/auth/auth';
-import LeftDrawer from '../../../../components/menu/leftDrawer';
+import LeftDrawer from '../../leftDrawer';
 //26356c
 const styles = {
   root: {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "./card/card";
-import { createQuery } from "../../actions/api";
+// import { createQuery } from "../../../../actions/api";
 
 const styles = theme => ({
   List: {
@@ -60,7 +60,7 @@ function mapStateToProps(state) {
   return {data:state.app.data}
 }
 const mapDispatchToProps = dispatch => ({
-  createQuery: (payload) => dispatch(createQuery(payload))
+  //createQuery: (payload) => dispatch(createQuery(payload))
 });
 export default connect(
   mapStateToProps,
