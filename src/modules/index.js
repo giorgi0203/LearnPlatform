@@ -13,10 +13,10 @@ import { combineReducers } from "redux";
 // import { uiReducer } from "./ui";
 // import { apiReducer } from "./api";
 
-export default combineReducers({
+export default {Reducers:combineReducers({
   ui: uiReducer,
   app: apiReducer
-});
+})};
 
 /**
  * export actions
