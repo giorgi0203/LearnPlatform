@@ -9,6 +9,9 @@ const styles = theme => ({
     margin: "auto",
     maxWidth: 800,
     left: "50%"
+  },
+  emptyCenter:{
+    textAlign: "center"
   }
 });
 class PostsList extends Component {
@@ -17,22 +20,23 @@ class PostsList extends Component {
   }
   componentDidMount() {
     //მოთხოვნის სტანდარტი რომელიც შეგვიძლია გავაკეთოთ ნებისმიერი კომპონენტიდან თუ გვაქვს შესაბამისი მიდლვეარი
-    this.props.createQuery({query:`
-      query{
-        posts{
-          _id
-          title
-          description
-          content
-        }
-      }
-    `});
+    // this.props.createQuery({query:`
+    //   query{
+    //     posts{
+    //       _id
+    //       title
+    //       description
+    //       content
+    //     }
+    //   }
+    // `});
   }
   onAction(){
     
   }
   render() {
-    let Posts = <h1>პოსტები არ არის</h1>;
+    const { classes } = this.props;
+    let Posts = <h1 className={classes.emptyCenter}>პოსტები არ არის</h1>;
     if (this.props.data) {
       Posts = this.props.data.posts.map((item, key) => (
         <Card
@@ -51,13 +55,13 @@ class PostsList extends Component {
     }
 
 
-    const { classes } = this.props;
+    
     return <div className={classes.List}>{Posts}</div>;
   }
 }
 
 function mapStateToProps(state) {
-  return {data:state.app.data}
+  // return {data:state.app.data}
 }
 const mapDispatchToProps = dispatch => ({
   //createQuery: (payload) => dispatch(createQuery(payload))

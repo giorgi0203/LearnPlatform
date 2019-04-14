@@ -6,15 +6,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Auth from '../../../../components/auth/auth';
-import LeftDrawer from '../../leftDrawer';
 //26356c
 const styles = {
   root: {
     flexGrow: 1,
   },
   grow: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   menuButton: {
     marginLeft: -12,
@@ -49,20 +47,15 @@ class Navbar extends Component {
             <Typography variant="h6"  color="inherit" className={classes.grow}>
               მენიუ
             </Typography>
-            <Auth />
-            
           </Toolbar>
         </AppBar>
+        
 
-        <LeftDrawer toggleDrawer={this.toggleDrawer} isOpen={this.state.isOpen}/>
+        {/* <LeftDrawer toggleDrawer={this.toggleDrawer} isOpen={this.state.isOpen}/> */}
       </div>
     )
   }
 }
-
-Navbar.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 
 export default withStyles(styles)(Navbar);

@@ -2,21 +2,26 @@
  * export Components
  */
 import Navbar from "./menu/navbar";
-import List from "./post/index";
+import List from "./blog/index";
+import Auth from "./auth";
+import Main from "./menu/fab";
+import { combineReducers } from "redux";
 
-export { Navbar, List };
+export { Navbar, List, Auth ,Main };
 
 /**
  * export reducers
  */
-import { combineReducers } from "redux";
+
 // import { uiReducer } from "./ui";
 // import { apiReducer } from "./api";
 
-export default {Reducers:combineReducers({
-  ui: uiReducer,
-  app: apiReducer
-})};
+export default {
+  Reducers: combineReducers({
+    // ui: uiReducer,
+    // app: apiReducer
+  })
+};
 
 /**
  * export actions
