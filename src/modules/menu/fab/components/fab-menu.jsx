@@ -26,7 +26,7 @@ const actions = [
   { icon: <DeleteIcon />, name: "Delete" }
 ];
 
-class Main extends Component {
+class FabMenu extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
@@ -63,4 +63,4 @@ class Main extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Main);
+export default withStyles(styles, { withTheme: true })(FabMenu);

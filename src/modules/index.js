@@ -4,10 +4,10 @@
 import Navbar from "./menu/navbar";
 import List from "./blog/index";
 import Auth from "./auth";
-import Main from "./menu/fab";
+import FabMenu from "./menu/fab";
 import { combineReducers } from "redux";
 
-export { Navbar, List, Auth ,Main };
+export { Navbar, List, Auth ,FabMenu };
 
 /**
  * export reducers

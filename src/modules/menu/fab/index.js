@@ -1,3 +1,3 @@
-import Main from './components/main'
+import FabMenu from './components/fab-menu'
 
-export default Main;
+export default FabMenu;
