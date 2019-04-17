@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import PersonIcon from "@material-ui/icons/Person";
@@ -19,11 +20,7 @@ const styles = theme => ({
   }
 });
 const actions = [
-  { icon: <AddIcon />, name: "Add" },
-  { icon: <SaveIcon />, name: "Save" },
-  { icon: <PrintIcon />, name: "Print" },
-  { icon: <ShareIcon />, name: "Share" },
-  { icon: <DeleteIcon />, name: "Delete" }
+  { icon: <AddIcon />, name: "Add" }
 ];
 
 class FabMenu extends Component {
@@ -63,4 +60,14 @@ class FabMenu extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(FabMenu);
+const mapDispatchToProps =  dispatch => ({
+  // openDialog: () => dispatch(openDialog()),
+  // closeDialog: () => dispatch(closeDialog()),
+  // login: () => dispatch(login())
+})
+
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles, { withTheme: true })(FabMenu));

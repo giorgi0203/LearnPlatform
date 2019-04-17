@@ -13,12 +13,6 @@ class Auth extends Component {
             <Button variant="contained" >
                 შესვლა
             </Button>
-            {/* <Login
-              open={this.props.ui.dialogVisible}
-              onClose={this.props.closeDialog}
-              login={this.props.login}
-            /> */}
-            {/* registracia */}
         </div>
     )
   }
@@ -31,7 +25,7 @@ const mapDispatchToProps =  dispatch => ({
 })
 
 function mapStateToProps(state) {
-    return state;
+    return state.global;
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Auth);
