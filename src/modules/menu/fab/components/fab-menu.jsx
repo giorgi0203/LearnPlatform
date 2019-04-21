@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import Fab from "@material-ui/core/Fab";
+import { connect } from "react-redux";
+import LockOpen from "@material-ui/icons/LockOpen";
+import Lock from "@material-ui/icons/Lock";
 import AddIcon from "@material-ui/icons/Add";
 import PersonIcon from "@material-ui/icons/Person";
 import SpeedDial from "@material-ui/lab/SpeedDial";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
-import ShareIcon from '@material-ui/icons/Share';
-import DeleteIcon from '@material-ui/icons/Delete';
+import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
+import SaveIcon from "@material-ui/icons/Save";
+import PrintIcon from "@material-ui/icons/Print";
+import ShareIcon from "@material-ui/icons/Share";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   fab: {
@@ -19,9 +20,7 @@ const styles = theme => ({
     right: theme.spacing.unit * 2
   }
 });
-const actions = [
-  { icon: <AddIcon />, name: "Add" }
-];
+const actions = [{ icon: <AddIcon />, name: "Add" }];
 
 class FabMenu extends Component {
   constructor(props) {
@@ -30,19 +29,23 @@ class FabMenu extends Component {
   }
 
   handleClick = () => {
-    this.setState(state => ({
-      open: !this.state.open
-    }));
+    if (this.props.isLogged) {
+      this.setState(state => ({
+        open: !this.state.open
+      }));
+    }else{
+      
+    }
   };
   render() {
     const { classes } = this.props;
-
+    // log
     return (
       <div>
         <SpeedDial
           ariaLabel="menu"
           className={classes.fab}
-          icon={<PersonIcon />}
+          icon={this.props.isLogged?<PersonIcon />:<Lock />}
           onClick={this.handleClick}
           open={this.state.open}
         >
@@ -60,14 +63,15 @@ class FabMenu extends Component {
   }
 }
 
-const mapDispatchToProps =  dispatch => ({
+const mapDispatchToProps = dispatch => ({
   // openDialog: () => dispatch(openDialog()),
   // closeDialog: () => dispatch(closeDialog()),
   // login: () => dispatch(login())
-})
+});
 
-function mapStateToProps(state) {
-  return state;
-}
+const mapStateToProps = state => ({ isLogged: state.auth.authData.isLogged });
 
-export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles, { withTheme: true })(FabMenu));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(FabMenu));

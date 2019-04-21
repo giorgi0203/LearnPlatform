@@ -1,9 +1,12 @@
 const initState = {
-  user: {}
+  user: {},
+  authData:{
+    isLogged:false
+  }
 };
 
 /*
-      ლოდინის მოქმედებების დაშლა და state ში გადატანა
+     მოქმედებების დაშლა და state ში გადატანა
   */
 export function authReducer(state = initState, action) {
   switch (action.type) {
