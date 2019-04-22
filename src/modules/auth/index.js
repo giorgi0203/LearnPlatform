@@ -1,10 +1,11 @@
-import Auth from "./components/auth";
+import Auth from "./components/Auth";
 import { authReducer } from "./reducers";
-import { login, openAuth, register } from "./actions";
+import { login, register } from "./actions";
+import { login as loginMiddlewares } from "./middlewares";
 
 export default Auth;
 
 /**
     export extra module functionality 
  */
-export { authReducer, login, openAuth, register };
+export { authReducer, login, register, loginMiddlewares };

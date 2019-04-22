@@ -1,0 +1,3 @@
+let PREFIX = "FAB"
+export const OPEN_AUTH_ACTION  = `${PREFIX} OPEN_AUTH_ACTION`;
+export const CLOSE_AUTH_ACTION  = `${PREFIX} CLOSE_AUTH_ACTION`;

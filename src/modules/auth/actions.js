@@ -1,15 +1,17 @@
-import { OPEN_AUTH_ACTION,LOGIN_ACTION,REGISTRATION_ACTION } from "./constants";
+import { LOGIN_ACTION,REGISTRATION_ACTION } from "./constants";
 
-export const openAuth = authType => ({
-  type: OPEN_AUTH_ACTION,
-  authType: authType
-});
-
+/**
+ * do login
+ * @param {jsonObject} payload 
+ */
 export const login = payload => ({
   type: LOGIN_ACTION,
   payload: payload
 });
-
+/**
+ * do register
+ * @param {jsonObject} payload 
+ */
 export const register = payload => ({
   type: REGISTRATION_ACTION,
   payload: payload

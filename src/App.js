@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
-import { Navbar, List, FabMenu } from "./modules";
-// import Spinner from './components/spinners/spinner';
-// import List from './components/posts/list';
-// import Form from './components/posts/form';
+import { Navbar, List, FabMenu, Auth } from "./modules";
+
 import store from "./store";
 
 class App extends Component {
@@ -11,8 +9,9 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Navbar />
+        <Auth />
         <FabMenu />
-        <List/>
+        <List />
         {/* <Spinner />
         
         <Navbar /> */}

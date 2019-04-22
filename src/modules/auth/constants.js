@@ -1,6 +1,4 @@
 let PREFIX = "AUTH"
-export const OPEN_AUTH_ACTION  = `${PREFIX} OPEN_AUTH_ACTION`;
-
 
 export const LOGIN_ACTION  = `${PREFIX} LOGIN_ACTION`;
 export const LOGIN_ACTION_OK  = `${PREFIX} LOGIN_ACTION_OK`;

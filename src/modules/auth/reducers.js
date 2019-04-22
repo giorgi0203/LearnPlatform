@@ -1,4 +1,5 @@
 const initState = {
+  
   user: {},
   authData:{
     isLogged:false

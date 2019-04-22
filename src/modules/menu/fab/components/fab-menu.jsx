@@ -13,6 +13,7 @@ import PrintIcon from "@material-ui/icons/Print";
 import ShareIcon from "@material-ui/icons/Share";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { withStyles } from "@material-ui/core/styles";
+import { openAuth } from "../actions";
 const styles = theme => ({
   fab: {
     position: "absolute",
@@ -33,8 +34,8 @@ class FabMenu extends Component {
       this.setState(state => ({
         open: !this.state.open
       }));
-    }else{
-      
+    } else {
+      this.props.openAuth();
     }
   };
   render() {
@@ -45,7 +46,7 @@ class FabMenu extends Component {
         <SpeedDial
           ariaLabel="menu"
           className={classes.fab}
-          icon={this.props.isLogged?<PersonIcon />:<Lock />}
+          icon={this.props.isLogged ? <PersonIcon /> : <Lock />}
           onClick={this.handleClick}
           open={this.state.open}
         >
@@ -64,9 +65,7 @@ class FabMenu extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  // openDialog: () => dispatch(openDialog()),
-  // closeDialog: () => dispatch(closeDialog()),
-  // login: () => dispatch(login())
+  openAuth: () => dispatch(openAuth())
 });
 
 const mapStateToProps = state => ({ isLogged: state.auth.authData.isLogged });
