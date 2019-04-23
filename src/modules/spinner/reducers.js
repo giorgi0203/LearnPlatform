@@ -1,13 +1,17 @@
-import { SHOW_SPINNER, HIDE_SPINNER } from "../actions/ui";
+import { SHOW_SPINNER, HIDE_SPINNER } from "./constants";
 
-const initState = {};
+const initState = {
+  loading: false
+};
 
 /*
-      ლოდინის მოქმედებების დაშლა და state ში გადატანა
+  ლოდინის მოქმედებების დაშლა და state ში გადატანა
   */
-export function uiReducer(state = initState, action) {
+export function spinerReducer(state = initState, action) {
   switch (action.type) {
     case SHOW_SPINNER:
+    console.log(action);
+    
       return { ...state, loading: true };
     case HIDE_SPINNER:
       return { ...state, loading: false };

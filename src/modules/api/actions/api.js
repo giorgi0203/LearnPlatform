@@ -8,33 +8,32 @@ export const OK_QUERY = `${PREFIX} OK_QUERY`;
  * creates query
  * @param {String} url 
  * @param {String} payload 
- * @param {String|Number} meta 
  */
-export const createQuery = (payload, meta) => ({
+export const createQuery = (payload) => ({
   type: CREATE_QUERY,
-  payload: payload,
-  meta: { ...meta }
+  payload: payload
 });
 
 /**
  * send query to database
  * @param {String} url endpoint url
  * @param {String} payload query body
- * @param {String|Number}meta onSuccess action
  */
-export const sendQuery = (url, payload, meta) => ({
+export const sendQuery = (payload) => ({
   type: SEND_QUERY,
   payload: payload,
-  meta: { ...meta, url }
 });
 
 /**
- * recive response from server
+ * recive response from server it will handle it acording to the parameters
+ * trigger error or trigger success
  * @param {String} payload 
- * @param {String} 
+ * @param {Action} onSuccess action to dispatch on after success
+ * @param {Action} onError action to dispatch on after errorr
  */
-export const okQuery = (payload,meta) => ({
+export const okQuery = (payload,onSuccess,onError) => ({
   type: OK_QUERY,
   payload: payload,
-  meta:meta
+  onSuccess: onSuccess,
+  onError:onError
 });

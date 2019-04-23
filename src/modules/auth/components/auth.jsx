@@ -67,7 +67,7 @@ const mapDispatchToProps = dispatch => ({
   // login: () => dispatch(login())
 });
 
-const mapStateToProps = state => ({ isAuthOpen: state.ui.isAuthDialogOpen });
+const mapStateToProps = state => ({ isAuthOpen: state.ui.auth.isAuthDialogOpen });
 
 export default connect(
   mapStateToProps,

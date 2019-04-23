@@ -4,7 +4,7 @@ import {
   OK_QUERY,
   sendQuery,
   okQuery
-} from "../actions/api";
+} from '../actions/api';
 import { showSpinner, hideSpinner } from "../../../modules";
 import axios from "axios";
 let headers = {
@@ -19,7 +19,7 @@ export const apiCreate = ({ dispatch }) => next => action => {
   }
 };
 
-export const apiSend = ({ dispatch }) => next => action => {
+export const apiSend =  ({ dispatch }) => next => action => {
   if (action.type === SEND_QUERY) {
     dispatch(showSpinner());
     axios({
@@ -34,8 +34,6 @@ export const apiSend = ({ dispatch }) => next => action => {
       .catch(function(error) {
         console.log(error);
       });
-
-    // dispatch(sendQuery());
   }
   return next(action);
 };

@@ -2,7 +2,7 @@ import { LOGIN_ACTION,REGISTRATION_ACTION } from "./constants";
 
 /**
  * do login
- * @param {jsonObject} payload 
+ * @param {GraphqlQuery} payload 
  */
 export const login = payload => ({
   type: LOGIN_ACTION,
@@ -10,7 +10,7 @@ export const login = payload => ({
 });
 /**
  * do register
- * @param {jsonObject} payload 
+ * @param {GraphqlQuery} payload 
  */
 export const register = payload => ({
   type: REGISTRATION_ACTION,
