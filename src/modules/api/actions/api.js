@@ -5,35 +5,35 @@ export const SEND_QUERY = `${PREFIX} SEND_QUERY`;
 export const OK_QUERY = `${PREFIX} OK_QUERY`;
 
 /**
- * creates query
- * @param {String} url 
- * @param {String} payload 
+ *
+ * @param {String|Json} payload
+ * @param {Object<any>} meta action to dispatch on after success
  */
-export const createQuery = (payload) => ({
+export const createQuery = (payload, meta) => ({
   type: CREATE_QUERY,
-  payload: payload
+  payload: payload,
+  meta: meta
 });
 
 /**
- * send query to database
- * @param {String} url endpoint url
- * @param {String} payload query body
+ *
+ * @param {String|Json} payload
+ * @param {Object<any>} meta action to dispatch on after success
  */
-export const sendQuery = (payload) => ({
+export const sendQuery = (payload, meta) => ({
   type: SEND_QUERY,
   payload: payload,
+  meta: meta
 });
 
 /**
  * recive response from server it will handle it acording to the parameters
  * trigger error or trigger success
- * @param {String} payload 
- * @param {Action} onSuccess action to dispatch on after success
- * @param {Action} onError action to dispatch on after errorr
+ * @param {String|Json} payload
+ * @param {Object<any>} meta action to dispatch on after end of the request
  */
-export const okQuery = (payload,onSuccess,onError) => ({
+export const okQuery = (payload, meta) => ({
   type: OK_QUERY,
   payload: payload,
-  onSuccess: onSuccess,
-  onError:onError
+  meta: meta
 });

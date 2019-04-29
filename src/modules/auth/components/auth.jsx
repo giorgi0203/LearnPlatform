@@ -11,7 +11,7 @@ import Draggable from "react-draggable";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
 import Login from "./Login";
-import { closeAuth } from "../../../modules";
+import { closeAuth } from "../..";
 
 function PaperComponent(props) {
   return (

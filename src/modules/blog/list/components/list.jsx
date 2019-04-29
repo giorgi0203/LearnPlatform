@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "./card/card";
-// import { createQuery } from "../../../../actions/api";
+import { fetchPosts } from "../actions";
 
 const styles = theme => ({
   List: {
@@ -10,39 +10,31 @@ const styles = theme => ({
     maxWidth: 800,
     left: "50%"
   },
-  emptyCenter:{
+  emptyCenter: {
     textAlign: "center"
   }
 });
 class PostsList extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
   componentDidMount() {
     //მოთხოვნის სტანდარტი რომელიც შეგვიძლია გავაკეთოთ ნებისმიერი კომპონენტიდან თუ გვაქვს შესაბამისი მიდლვეარი
-    // this.props.createQuery({query:`
-    //   query{
-    //     posts{
-    //       _id
-    //       title
-    //       description
-    //       content
-    //     }
-    //   }
-    // `});
+    this.props.fetch();
   }
-  onAction(){
-    
-  }
+  onAction() {}
   render() {
     const { classes } = this.props;
     let Posts = <h1 className={classes.emptyCenter}>პოსტები არ არის</h1>;
-    if (this.props.data) {
-      Posts = this.props.data.posts.map((item, key) => (
+    if (this.props.posts) {
+      Posts = this.props.posts.map((item, key) => (
         <Card
           key={item._id}
           onAction={this.onAction}
-          image={"https://picsum.photos/700/400/?image="+parseInt( Math.random() * 100)}
+          image={
+            "https://picsum.photos/700/400/?image=" +
+            parseInt(Math.random() * 100)
+          }
           postData={{
             id: item._id,
             title: item.title,
@@ -54,17 +46,15 @@ class PostsList extends Component {
       ));
     }
 
-
-    
     return <div className={classes.List}>{Posts}</div>;
   }
 }
 
-function mapStateToProps(state) {
-  // return {data:state.app.data}
-}
+const mapStateToProps = state => ({
+  posts: state.blog.posts
+})
 const mapDispatchToProps = dispatch => ({
-  //createQuery: (payload) => dispatch(createQuery(payload))
+  fetch: payload => dispatch(fetchPosts(payload))
 });
 export default connect(
   mapStateToProps,

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import LockOpen from "@material-ui/icons/LockOpen";
 import Lock from "@material-ui/icons/Lock";
+import ExitToApp from "@material-ui/icons/ExitToApp";
 import AddIcon from "@material-ui/icons/Add";
 import PersonIcon from "@material-ui/icons/Person";
 import SpeedDial from "@material-ui/lab/SpeedDial";
@@ -16,12 +17,15 @@ import { withStyles } from "@material-ui/core/styles";
 import { openAuth } from "../actions";
 const styles = theme => ({
   fab: {
-    position: "absolute",
+    position: "fixed",
     bottom: theme.spacing.unit * 2,
     right: theme.spacing.unit * 2
   }
 });
-const actions = [{ icon: <AddIcon />, name: "Add" }];
+const actions = [
+  { icon: <ExitToApp />, name: "Logout" },
+  { icon: <AddIcon />, name: "Add post" }
+];
 
 class FabMenu extends Component {
   constructor(props) {

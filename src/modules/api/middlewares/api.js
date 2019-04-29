@@ -15,24 +15,28 @@ let url = "http://localhost:30001/graphql/api";
 export const apiCreate = ({ dispatch }) => next => action => {
   next(action);
   if (action.type === CREATE_QUERY) {
-    dispatch(sendQuery(url, action.payload, action.meta));
+    dispatch(sendQuery(action.payload,action.meta));
   }
 };
 
 export const apiSend =  ({ dispatch }) => next => action => {
   if (action.type === SEND_QUERY) {
     dispatch(showSpinner());
+    //console.log(action);
+    if (localStorage.getItem('token')) {
+      headers = {...headers,Authorization:`Bearer ${localStorage.getItem('token')}`}
+    }
     axios({
       method: "post",
-      url: action.meta.url,
+      url: url,
       data: JSON.stringify(action.payload),
       headers
     })
       .then(function(response) {
-        dispatch(okQuery(response.data));
+        dispatch(okQuery(response.data,action.meta));
       })
       .catch(function(error) {
-        console.log(error);
+        dispatch({type:action.meta.onSuccess,data:error});
       });
   }
   return next(action);
@@ -42,7 +46,7 @@ export const apiOk = ({ dispatch }) => next => action => {
   next(action);
   if (action.type === OK_QUERY) {
     dispatch(hideSpinner());
-    //dispatch({type:action.meta.onSuccess,data:action.payload});
+    dispatch({type:action.meta.onSuccess,payload:action.payload.data});
   }
 };
 

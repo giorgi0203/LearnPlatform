@@ -10,8 +10,9 @@ import { combineReducers } from "redux";
 import { openAuth, closeAuth } from "./menu/fab";
 
 import {} from "./menu/navbar";
-import { apiMiddleware } from "./api";
-import { login, register, loginMiddlewares } from "./auth";
+import { apiMiddleware, createQuery } from "./api";
+import { login, register, authMiddleware } from "./auth";
+import { blogMiddleware,blogReducer } from "./blog";
 import Spinner, { showSpinner, hideSpinner, spinerReducer } from "./spinner";
 
 /**
@@ -32,6 +33,7 @@ export { Navbar, List, Auth, FabMenu, Spinner };
  */
 export const reducers = combineReducers({
   auth: authReducer,
+  blog:blogReducer,
   ui: combineReducers({
     auth: fabMenuReducer,
     spinner: spinerReducer
@@ -41,10 +43,10 @@ export const reducers = combineReducers({
 /**
  * export actions
  */
-export { openAuth, closeAuth, showSpinner, hideSpinner };
+export { openAuth, closeAuth, showSpinner, hideSpinner, createQuery };
 
 /**
  * export middlewares
  *
  */
-export { loginMiddlewares, apiMiddleware };
+export { authMiddleware, apiMiddleware, blogMiddleware };

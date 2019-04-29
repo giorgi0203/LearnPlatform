@@ -16,7 +16,11 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   //ბრაუზერი წინასწარ აგზავნის ამ მეთოდს იმის გასარკვევად თუ რომელ მეთოდებს იღებს სერვერი მაგრამ
   //graphql_ს არ შეუძლია ამ რექვესთის დამუშავება ამიტომ წარმატების კოდს ვაბრუნებთ უკან
-  // console.log(req);
+  
+
+  if (req.headers.authorization) {
+    // console.log(req.headers);
+  }
 
   if (req.method == "OPTIONS") {
     return res.sendStatus(200);

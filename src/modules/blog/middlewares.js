@@ -5,17 +5,6 @@ import axios from "axios";
 
 let url = "http://localhost:30001/graphql/api";
 
-// მოთხოვნების დამუშავება რომელიც ეხება პოსტებს
-export const postsFetch = ({ dispatch }) => next => action => {
-  next(action);
-  if (action.type == FETCH_ALL_POSTS) {
-    console.log(action);
-    
-    dispatch(createQuery(url, action.payload, { onSuccess: FETCH_ALL_POSTS_OK }));
-  }
-  //next(action);
-};
-
 export const postsCreate = ({ dispatch }) => next => action => {
   next(action);
   if (action.type == ADD_POST) {
@@ -32,4 +21,4 @@ export const postsEdit = ({ dispatch }) => next => action => {
   //next(action);
 };
 
-export const posts = [postsFetch,postsCreate,postsEdit]
+export const posts = [postsCreate,postsEdit]
