@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import LeftDrawer from '../../leftDrawer';
 //26356c
 const styles = {
   root: {
@@ -51,7 +52,7 @@ class Navbar extends Component {
         </AppBar>
         
 
-        {/* <LeftDrawer toggleDrawer={this.toggleDrawer} isOpen={this.state.isOpen}/> */}
+        <LeftDrawer toggleDrawer={this.toggleDrawer} isOpen={this.state.isOpen}/>
       </div>
     )
   }

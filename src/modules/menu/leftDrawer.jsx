@@ -7,9 +7,11 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-
+import Home from "@material-ui/icons/Home";
+import Folder from "@material-ui/icons/Folder";
+import Games from "@material-ui/icons/Games";
+import Memory from "@material-ui/icons/Memory";
+import LibraryBooks from "@material-ui/icons/LibraryBooks";
 const styles = {
   list: {
     width: 250
@@ -19,14 +21,20 @@ const styles = {
   },
   drawer: {
     width: 240,
-    flexShrink: 0,
+    flexShrink: 0
   },
   drawerPaper: {
     width: 240,
-    top:"auto",
-  },
+    top: "auto"
+  }
 };
-
+let menuItems = [
+  { title: "მთავარი", icon: <Home /> },
+  { title: "სამუშაო გარემო", icon: <Folder /> },
+  { title: "ctf-თამაშები", icon: <Games /> },
+  { title: "ალგორითმები", icon: <Memory /> },
+  { title: "მასალები", icon: <LibraryBooks /> }
+];
 class LeftDrawer extends React.Component {
   render() {
     const { classes } = this.props;
@@ -34,16 +42,14 @@ class LeftDrawer extends React.Component {
     const sideMenuList = (
       <div className={classes.list}>
         <List>
-          {["მთავარი", "ctf-თამაშები", "ალგორითმები", "მასალები"].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )}
+          {menuItems.map((item, index) => (
+            <ListItem button key={item.title}>
+              <ListItemIcon>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText primary={item.title} />
+            </ListItem>
+          ))}
         </List>
         <Divider />
       </div>
@@ -62,7 +68,7 @@ class LeftDrawer extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            // onClick={this.props.toggleDrawer(false)}
+            onClick={this.props.toggleDrawer(false)}
             // onKeyDown={this.props.toggleDrawer(false)}
           >
             {sideMenuList}
