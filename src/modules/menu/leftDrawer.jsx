@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -29,11 +30,27 @@ const styles = {
   }
 };
 let menuItems = [
-  { title: "მთავარი", icon: <Home /> },
-  { title: "სამუშაო გარემო", icon: <Folder /> },
-  { title: "ctf-თამაშები", icon: <Games /> },
-  { title: "ალგორითმები", icon: <Memory /> },
-  { title: "მასალები", icon: <LibraryBooks /> }
+  { title: "მთავარი", icon: <Home />, link: <Link to="/home">მთავარი</Link> },
+  {
+    title: "სამუშაო გარემო",
+    icon: <Folder />,
+    link: <Link to="/work">სამუშაო გარემო</Link>
+  },
+  {
+    title: "ctf-თამაშები",
+    icon: <Games />,
+    link: <Link to="/ctf">ctf-თამაშები</Link>
+  },
+  {
+    title: "ალგორითმები",
+    icon: <Memory />,
+    link: <Link to="/alg">ალგორითმები</Link>
+  },
+  {
+    title: "მასალები",
+    icon: <LibraryBooks />,
+    link: <Link to="/lib">მასალები</Link>
+  }
 ];
 class LeftDrawer extends React.Component {
   render() {
@@ -44,10 +61,8 @@ class LeftDrawer extends React.Component {
         <List>
           {menuItems.map((item, index) => (
             <ListItem button key={item.title}>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.title} />
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              {item.link}
             </ListItem>
           ))}
         </List>
@@ -68,7 +83,7 @@ class LeftDrawer extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            onClick={this.props.toggleDrawer(false)}
+            // onClick={this.props.toggleDrawer(false)}
             // onKeyDown={this.props.toggleDrawer(false)}
           >
             {sideMenuList}
