@@ -1,14 +1,13 @@
-import { LOGIN_ACTION_OK } from "./constants";
+import { LOGIN_ACTION_OK, LOGOUT_ACTION_OK } from "./constants";
 import JwtDecode from "jwt-decode";
 /**
  * retrive initial state from localstorage
  */
 let token = localStorage.getItem("token");
-let userData = {}
+let userData = {};
 if (token) {
-  userData = JwtDecode(token); 
+  userData = JwtDecode(token);
   console.log(userData);
-  
 }
 const initState = {
   user: {
@@ -30,6 +29,14 @@ export function authReducer(state = initState, action) {
         authData: {
           ...state.authData,
           isLogged: true
+        }
+      };
+    case LOGOUT_ACTION_OK:
+      return {
+        ...state,
+        authData: {
+          ...state.authData,
+          isLogged: false
         }
       };
     default:

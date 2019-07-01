@@ -15,6 +15,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Content from "./content";
 
+import p1 from "../../../../../images/p1.png";
+import p2 from "../../../../../images/p2.png";
+
 // import { openEditor, closeEditor } from "../../../actions/ui";
 // import { createQuery } from "../../../actions/api";
 
@@ -58,13 +61,15 @@ class RecipeReviewCard extends React.Component {
   };
   handleDeleteClick = () => {
     this.setState({ open: false, anchorEl: null });
-    this.props.createQuery({query:`
+    this.props.createQuery({
+      query: `
       mutation{
         deletePost(postID:"${this.props.postData.id}"){
           title
         }
       }
-    `});
+    `
+    });
   };
 
   handleMenuClose = () => {
@@ -116,7 +121,7 @@ class RecipeReviewCard extends React.Component {
           handleExpandClick={this.handleExpandClick}
           expanded={this.state.expanded}
           content={this.props.postData.content}
-          image={this.props.image}
+          image={Math.random() > 0.5 ? p1 : p2}
         />
       </Card>
     );

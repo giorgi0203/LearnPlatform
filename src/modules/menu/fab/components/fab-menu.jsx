@@ -15,6 +15,8 @@ import ShareIcon from "@material-ui/icons/Share";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { withStyles } from "@material-ui/core/styles";
 import { openAuth } from "../actions";
+
+import { logout } from "../../../index";
 const styles = theme => ({
   fab: {
     position: "fixed",
@@ -23,8 +25,8 @@ const styles = theme => ({
   }
 });
 const actions = [
-  { icon: <ExitToApp />, name: "Logout" },
-  { icon: <AddIcon />, name: "Add post" }
+  { icon: <ExitToApp />, name: "Logout", action: "Logout" },
+  { icon: <AddIcon />, name: "Add post", action: "PostAdd" }
 ];
 
 class FabMenu extends Component {
@@ -33,7 +35,11 @@ class FabMenu extends Component {
     this.state = { open: false };
   }
 
-  handleClick = () => {
+  handleClick = action => {
+    if (action == "Logout") {
+      this.props.logout();
+    } else if (action == "PostAdd") {
+    }
     if (this.props.isLogged) {
       this.setState(state => ({
         open: !this.state.open
@@ -59,7 +65,9 @@ class FabMenu extends Component {
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
-              onClick={this.handleClick}
+              onClick={() => {
+                this.handleClick(action.name);
+              }}
             />
           ))}
         </SpeedDial>
@@ -69,7 +77,8 @@ class FabMenu extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  openAuth: () => dispatch(openAuth())
+  openAuth: () => dispatch(openAuth()),
+  logout: () => dispatch(logout())
 });
 
 const mapStateToProps = state => ({ isLogged: state.auth.authData.isLogged });

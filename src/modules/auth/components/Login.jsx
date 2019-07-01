@@ -77,7 +77,7 @@ class Login extends Component {
           margin="normal"
         />
         <div className={this.props.classes.buttons}>
-          <Button color="primary">Cancel</Button>
+          {/* <Button color="primary" onClick={this.handleClose}>Cancel</Button> */}
           <Button type="submit" color="primary">
             Login
           </Button>
