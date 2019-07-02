@@ -39,6 +39,7 @@ class FabMenu extends Component {
     if (action == "Logout") {
       this.props.logout();
     } else if (action == "PostAdd") {
+      this.props.logout();
     }
     if (this.props.isLogged) {
       this.setState(state => ({
